@@ -27,7 +27,35 @@ export default {
           light_blue: "#D1E3FA",
         },
       },
+      animation: {
+        typewriter: 'typewriter 2s steps(var(--steps)) forwards',
+        caret: 'typewriter 2s steps(var(--steps)) forwards, blink 1s steps(var(--steps)) infinite 2s',
+        blinkc: 'typewriter 0s steps(var(--steps)) forwards, blink 1s steps(var(--steps)) infinite 0s'
+      },
+      keyframes: {
+        typewriter: {
+          to: {
+            left: '100%',
+          },
+        },
+        blink: {
+          '0%': {
+            opacity: '0',
+          },
+          '0.1%': {
+            opacity: '1',
+          },
+          '50%': {
+            opacity: '1',
+          },
+          '50.1%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+      },
     },
   },
-  plugins: [],
 } satisfies Config;
