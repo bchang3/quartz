@@ -1,14 +1,8 @@
 import React from "react";
 import * as emoji from "node-emoji";
 import Link from "next/link";
+import { getDateString, Issue } from "../utils/utils";
 
-export interface Issue {
-  title: string;
-  summary: string;
-  notes?: string;
-  links?: string[];
-  date: string;
-}
 interface IssueDisplay {
   issues: Issue[];
   emojis: string[];
@@ -30,7 +24,7 @@ function IssueDisplay({ issues, emojis, showDate = true }: IssueDisplay) {
             </div>
             {showDate && (
               <div className="text-gray-400 font-normal text-sm">
-                {issue.date}
+                {getDateString(issue)}
               </div>
             )}
           </Link>
@@ -54,25 +48,65 @@ export default function SearchBar() {
     "seedling",
   ];
   const sampleTodayIssues: Issue[] = [
-    { title: "Set up AWS Lightsail server", summary: "", date: "Mar 1" },
-    { title: "Use a t3 stack with Next.JS", summary: "", date: "Mar 1" },
-    { title: "Tailwind v4", summary: "", date: "Mar. 1" },
+    {
+      id: "",
+      title: "Set up AWS Lightsail server",
+      date: new Date("2025-03-01"),
+    } as Issue,
+    {
+      title: "Use a t3 stack with Next.JS",
+      summary: "",
+      date: new Date("2025-03-01"),
+    } as Issue,
+    {
+      title: "Tailwind v4",
+      summary: "",
+      date: new Date("2025-03-01"),
+    } as Issue,
   ];
   const sampleWeekIssues = [
-    { title: "Flask for WebSockets", summary: "", date: "Feb 27" },
-    { title: "MongoDB Atlas Full Text Search", summary: "", date: "Feb 26" },
-    { title: "Excalibur Javascript Game Engine", summary: "", date: "Feb 26" },
-    { title: "Google Cloud Platform DB", summary: "", date: "Feb 24" },
+    {
+      title: "Flask for WebSockets",
+      summary: "",
+      date: new Date("2025-02-27"),
+    } as Issue,
+    {
+      title: "MongoDB Atlas Full Text Search",
+      summary: "",
+      date: new Date("2025-02-26"),
+    } as Issue,
+    {
+      title: "Excalibur Javascript Game Engine",
+      summary: "",
+      date: new Date("2025-02-06"),
+    } as Issue,
+    {
+      title: "Google Cloud Platform DB",
+      summary: "",
+      date: new Date("2025-02-24"),
+    } as Issue,
   ];
   const sampleMonthIssues = [
     {
       title: "Kubernetes and Container Management",
       summary: "",
-      date: "Feb 18",
-    },
-    { title: "Deploying to Vercel", summary: "", date: "Feb 14" },
-    { title: "Setting Up HTTPS Backend", summary: "", date: "Feb 11" },
-    { title: "Connect Arduino R4 to Wifi", summary: "", date: "Feb 7" },
+      date: new Date("2025-02-18"),
+    } as Issue,
+    {
+      title: "Deploying to Vercel",
+      summary: "",
+      date: new Date("2025-02-14"),
+    } as Issue,
+    {
+      title: "Setting Up HTTPS Backend",
+      summary: "",
+      date: new Date("2025-02-11"),
+    } as Issue,
+    {
+      title: "Connect Arduino R4 to Wifi",
+      summary: "",
+      date: new Date("2025-02-07"),
+    } as Issue,
   ];
   return (
     <div className="group w-full" tabIndex={0}>

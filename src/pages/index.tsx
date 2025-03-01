@@ -12,7 +12,7 @@ export default function Home() {
 before:absolute before:inset-0 before:animate-typewriter
 before:bg-white
 after:absolute after:inset-0 after:w-[0.125em] after:animate-caret
-after:bg-black text-5xl font-bold [--steps:18]"
+after:bg-black font-bold [--steps:18]"
             >
               Welcome to Quartz.
             </h1>{" "}

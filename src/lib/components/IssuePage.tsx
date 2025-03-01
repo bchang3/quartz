@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { Issue } from "./SearchBar";
+import { getDateString, Issue } from "../utils/utils";
 
 interface IssuePageProps {
   issue: Issue;
@@ -23,7 +23,7 @@ after:bg-black text-4xl font-bold h-11"
             >
               {issue.title}
             </h1>{" "}
-            <div className="text-xl font-light">{issue.date}</div>
+            <div className="text-xl font-light"> {getDateString(issue)}</div>
           </div>
 
           <div className="flex flex-col gap-4 w-3/5">
@@ -38,18 +38,13 @@ after:bg-black text-4xl font-bold h-11"
           <div className="flex flex-col gap-4 w-3/5">
             <div className="text-2xl font-semibold">References</div>
             <div className="text-gray-600">
-              {issue.links?.map((link, i) => {
-                return (
-                  <a
-                    key={i}
-                    className="text-primary-blue"
-                    target="_blank"
-                    href={link}
-                  >
-                    {link}
-                  </a>
-                );
-              })}
+              <a
+                className="text-primary-blue"
+                target="_blank"
+                href={issue.link}
+              >
+                {issue.link}
+              </a>
             </div>
           </div>
         </div>
