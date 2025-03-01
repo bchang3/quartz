@@ -38,9 +38,14 @@ after:bg-black text-4xl font-bold h-11"
           <div className="flex flex-col gap-4 w-3/5">
             <div className="text-2xl font-semibold">References</div>
             <div className="text-gray-600">
-              {issue.links?.map((link) => {
+              {issue.links?.map((link, i) => {
                 return (
-                  <a className="text-primary-blue" target="_blank" href={link}>
+                  <a
+                    key={i}
+                    className="text-primary-blue"
+                    target="_blank"
+                    href={link}
+                  >
                     {link}
                   </a>
                 );
