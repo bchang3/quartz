@@ -7,6 +7,7 @@ dotenv.config();
 
 type Data = {
   profileIconURL: string;
+  username: string;
 };
 
 export default async function handler(
@@ -16,5 +17,8 @@ export default async function handler(
   const access_token = req.cookies["access_token"];
   const octokit = new Octokit({ auth: `${access_token}` });
   const gitUser = await octokit.rest.users.getAuthenticated();
-  res.status(200).send({ profileIconURL: `${gitUser.data.avatar_url}` });
+  res.status(200).send({
+    profileIconURL: `${gitUser.data.avatar_url}`,
+    username: `${gitUser.data.login}`,
+  });
 }

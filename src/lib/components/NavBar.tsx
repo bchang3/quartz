@@ -1,12 +1,21 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Drawer } from "@mui/material";
+import { ClickAwayListener, Drawer, Popper } from "@mui/material";
 import { gitLogInURL } from "../utils/utils";
 import { useCookies } from "react-cookie";
 
 function NavBar() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>();
+  const [popperOpen, setPopperOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setPopperOpen(true);
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
   const [profileIconURL, setProfileIconURL] = useState<string>("");
   const [cookies] = useCookies(["logged_in"]);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
@@ -20,8 +29,13 @@ function NavBar() {
     });
     const data = await res.json();
     setProfileIconURL(data["profileIconURL"]);
+    setUsername(data["username"]);
   };
 
+  const handleClose = () => {
+    setPopperOpen(false);
+    setAnchorEl(null);
+  };
   useEffect(() => {
     setIsLoggedIn(cookies.logged_in || false);
     getProfileIcon();
@@ -59,13 +73,13 @@ function NavBar() {
         Home
       </Link>
       <Link className={menuLinkStyle} href={"/"}>
-        Add Dev Entry
+        Add an Issue
       </Link>
       <Link className={menuLinkStyle} href={"/"}>
-        Calendar View
+        View Issues
       </Link>
       <Link className={menuLinkStyle} href={"/"}>
-        Developer Profile
+        Profile
       </Link>
     </div>
   );
@@ -97,8 +111,9 @@ function NavBar() {
         {!isLoggedIn && <a href={gitLogInURL}>Sign in</a>}
         {isLoggedIn && (
           <img
-            className="rounded-full w-14 border-black border-2"
+            className="rounded-full w-14 border-black border-2 cursor-pointer"
             src={profileIconURL}
+            onClick={handleClick}
           />
         )}
       </div>
@@ -106,6 +121,32 @@ function NavBar() {
       <Drawer anchor="left" open={menuOpen} onClose={() => toggleMenu(false)}>
         {menu}
       </Drawer>
+      <Popper
+        id="id"
+        open={popperOpen}
+        anchorEl={anchorEl}
+        placement="bottom-end"
+      >
+        <ClickAwayListener onClickAway={handleClose}>
+          <div className="flex flex-col gap-3 h-36 w-48 border-gray-200 border-[1px] bg-black text-white rounded-md mt-2 py-2 px-2">
+            <div className="font-bold p-2 px-1">{username}</div>
+            <div className="flex flex-col gap-1">
+              <Link
+                href="/"
+                className="text-gray-200 font-light hover:font-normal hover:text-white hover:bg-gray-800 rounded-sm py-[3px] px-1"
+              >
+                Profile
+              </Link>
+              <Link
+                href="/"
+                className="text-gray-200 font-light hover:font-normal hover:text-white hover:bg-gray-800 rounded-sm py-[3px] px-1"
+              >
+                Log Out
+              </Link>
+            </div>
+          </div>
+        </ClickAwayListener>
+      </Popper>
     </div>
   );
 }
