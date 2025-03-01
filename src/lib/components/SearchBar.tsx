@@ -77,7 +77,7 @@ export default function SearchBar() {
   return (
     <div className="group w-full" tabIndex={0}>
       <div className="relative w-full">
-        <div className="flex flex-row gap-2 rounded-tr-sm rounded-tl-sm rounded-br-sm rounded-bl-sm group-focus:rounded-br-none group-focus-within:rounded-br-none group-focus:rounded-bl-none group-focus-within:rounded-bl-none border-gray-200 border-[1px] px-4 py-2 w-full">
+        <div className="flex flex-row gap-2 h-12 items-center rounded-tr-sm rounded-tl-sm rounded-br-sm rounded-bl-sm group-focus:rounded-br-none group-focus-within:rounded-br-none group-focus:rounded-bl-none group-focus-within:rounded-bl-none border-gray-200 border-[1px] px-4 py-2 w-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -92,7 +92,7 @@ export default function SearchBar() {
             placeholder="Search for an issue..."
           ></input>
         </div>
-        <div className="group-focus:flex bg-white group-focus-within:flex flex-col gap-4 absolute top-0 mt-[42px] border-b-[1px] border-r-[1px] rounded-br-sm rounded-bl-sm border-l-[1px] border-gray-200 h-96 w-full p-4 hidden overflow-scroll">
+        <div className="group-focus:flex bg-white group-focus-within:flex flex-col gap-4 absolute top-0 mt-12 border-b-[1px] border-r-[1px] rounded-br-sm rounded-bl-sm border-l-[1px] border-gray-200 h-96 w-full p-4 hidden overflow-scroll">
           <div className="flex flex-col gap-2">
             <div className="text-gray-400 font-semibold">Today</div>
             <IssueDisplay
