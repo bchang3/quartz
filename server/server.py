@@ -31,6 +31,7 @@ def handle_post_request():
     response = {}
     try:
         response = generate_summary(data["link"])
+        print(response)
         return jsonify(response), 200
     except:
         return jsonify({"error": "failed response generation"}), 400
