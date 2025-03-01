@@ -108,7 +108,14 @@ function NavBar() {
         </Link>
       </div>
       <div>
-        {!isLoggedIn && <a href={gitLogInURL}>Sign in</a>}
+        {!isLoggedIn && (
+          <a
+            className="mr-8 font-bold hover:underline cursor-pointer"
+            href={gitLogInURL}
+          >
+            Sign in
+          </a>
+        )}
         {isLoggedIn && (
           <img
             className="rounded-full w-14 border-black border-2 cursor-pointer"
