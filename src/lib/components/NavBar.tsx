@@ -116,7 +116,7 @@ function NavBar() {
             Sign in
           </a>
         )}
-        {isLoggedIn && (
+        {isLoggedIn && profileIconURL && (
           <img
             className="rounded-full w-14 border-black border-2 cursor-pointer"
             src={profileIconURL}
