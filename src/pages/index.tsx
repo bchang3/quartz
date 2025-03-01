@@ -40,7 +40,7 @@ after:bg-black text-5xl font-bold [--steps:18]"
           <InfoBox
             title="Track Your Work"
             content="See what you've been working on."
-            link="/"
+            link="/tracker"
           />
         </div>
       </div>
