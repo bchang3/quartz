@@ -28,8 +28,8 @@ export default function AddIssue() {
       body: JSON.stringify({
         email: email,
         notes: notesRef?.current?.value,
-        link: notesRef?.current?.value,
-        title: notesRef?.current?.value,
+        link: linkRef?.current?.value,
+        title: titleRef?.current?.value,
       }),
     });
     if (res.status === 200) {
