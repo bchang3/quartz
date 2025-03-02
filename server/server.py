@@ -49,8 +49,8 @@ def handle_post_request():
         db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response})
         print(response)
         return jsonify(response), 200
-    except:
-        return jsonify({"error": "failed response generation"}), 400
+    # except:
+    #     return jsonify({"error": "failed response generation"}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=True)
