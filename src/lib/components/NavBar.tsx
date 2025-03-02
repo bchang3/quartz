@@ -109,12 +109,12 @@ function NavBar() {
       </div>
       <div>
         {!isLoggedIn && (
-          <a
-            className="mr-8 font-bold hover:underline cursor-pointer"
-            href={gitLogInURL}
-          >
-            Sign in
-          </a>
+          <button className="group font-medium relative overflow-hidden mt-2">
+            <a className="mr-8 font-bold cursor-pointer" href={gitLogInURL}>
+              Sign in
+            </a>
+            <span className="text-md absolute top-[19px] left-0 bottom-0 w-0 h-[2px] bg-black transition-all duration-300 group-hover:w-2/3"></span>
+          </button>
         )}
         {isLoggedIn && profileIconURL && (
           <img
