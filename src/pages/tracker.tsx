@@ -79,7 +79,7 @@ export default function Tracker() {
                 title={issue.title}
                 summary={issue.summary}
                 link={issue.link}
-                route=""
+                route={`/issues/${issue.id}`}
               />
             ))}
           </motion.div>
@@ -115,7 +115,7 @@ export default function Tracker() {
                 title={issue.title}
                 summary={issue.summary}
                 link={issue.link}
-                route=""
+                route={`/issues/${issue.id}`}
               />
             ))}
           </motion.div>
@@ -151,7 +151,7 @@ export default function Tracker() {
                 title={issue.title}
                 summary={issue.summary}
                 link={issue.link}
-                route=""
+                route={`/issues/${issue.id}`}
               />
             ))}
           </motion.div>

@@ -49,7 +49,7 @@ after:bg-black text-2xl font-bold h-8"
           </div>
         </div>
         <embed
-          src="https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/"
+          src={issue.link}
           className="w-1/2 h-5/6 border-gray-400 border-2"
         ></embed>
       </div>
