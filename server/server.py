@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
 import sys
+from datetime import datetime
 
 from generator import generate_summary
 
@@ -46,7 +47,7 @@ def handle_post_request():
         response = result["response"]
     else:
       response = generate_summary(link)
-    db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response["answer"]})
+    db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response["answer"], "date": datetime.now()})
     
     return jsonify(response), 200
     # except:
