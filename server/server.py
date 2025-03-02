@@ -40,6 +40,7 @@ def handle_post_request():
 
     response = {}
     # try:
+    print(data)
     email = data["email"]
     link = data["link"].strip()
     title = data["title"]
