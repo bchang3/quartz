@@ -9,16 +9,16 @@ export default function IssuePage({ issue }: IssuePageProps) {
   const [embedHTML, setEmbedHTML] = useState<string>();
   const embedRef = useRef<HTMLDivElement>(null);
   const getHTML = async () => {
-      const res = await fetch(`${issue.link}`, {
-        method: "GET",
-      });
-      const data = await res.json();
-      if (embedRef.current) embedRef.current.innerHTML = data.pageContent;
-    };
-  
-    useEffect(() => {
-      getHTML();
-    }, []);
+    const res = await fetch(`${issue.link}`, {
+      method: "GET",
+    });
+    const data = await res.json();
+    if (embedRef.current) embedRef.current.innerHTML = data.pageContent;
+  };
+
+  useEffect(() => {
+    getHTML();
+  }, []);
   return (
     <div className="w-5/6 h-screen">
       <div className="flex flex-row w-full h-full justify-between">
