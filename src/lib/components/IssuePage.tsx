@@ -16,7 +16,7 @@ export default function IssuePage({ issue }: IssuePageProps) {
 before:absolute
 before:bg-white
 after:absolute after:inset-0 after:w-[0.125em] after:animate-blinkc
-after:bg-black text-4xl font-bold h-11"
+after:bg-black text-2xl font-bold h-8"
               style={
                 { "--steps": issue.title.length * 2 } as React.CSSProperties
               }
