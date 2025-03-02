@@ -38,7 +38,7 @@ def handle_post_request():
     response = {}
     # try:
     email = data["email"]
-    link = data["link"].trim()
+    link = data["link"].strip()
     title = data["title"]
     notes = data["notes"]
     result = db.issue.find_one({"link": link})
