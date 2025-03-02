@@ -6,19 +6,24 @@ interface IssuePageProps {
   issue: Issue;
 }
 export default function IssuePage({ issue }: IssuePageProps) {
-  const [embedHTML, setEmbedHTML] = useState<string>();
-  const embedRef = useRef<HTMLDivElement>(null);
-  const getHTML = async () => {
-    const res = await fetch(`${issue.link}`, {
-      method: "GET",
-    });
-    const data = await res.json();
-    if (embedRef.current) embedRef.current.innerHTML = data.pageContent;
-  };
+  const [previewImage, setPreviewImage] = useState<string>("");
 
   useEffect(() => {
-    getHTML();
-  }, []);
+    const fetchPreviewImage = async () => {
+      try {
+        const response = await fetch(
+          `/api/getPreviewImage?url=${encodeURIComponent(issue.link)}`,
+        );
+        const data = await response.json();
+        if (data.previewImage) {
+          setPreviewImage(data.previewImage);
+        }
+      } catch (error) {
+        console.log("Error setting preview image:", error);
+      }
+    };
+    fetchPreviewImage();
+  }, [issue.link]);
   return (
     <div className="w-5/6 h-screen">
       <div className="flex flex-row w-full h-full justify-between">
@@ -41,16 +46,16 @@ after:bg-black text-2xl font-bold h-8"
 
           <div className="flex flex-col gap-4 w-3/5">
             <div className="text-2xl font-semibold">Your Notes</div>
-            <div className="text-gray-600">{issue.notes}</div>
+            <div className="text-gray-600 text-lg">{issue.notes}</div>
           </div>
 
           <div className="flex flex-col gap-4 w-3/5">
             <div className="text-2xl font-semibold">Summary</div>
-            <div className="text-gray-600">{issue.summary}</div>
+            <div className="text-gray-600 text-lg">{issue.summary}</div>
           </div>
           <div className="flex flex-col gap-4 w-3/5">
             <div className="text-2xl font-semibold">References</div>
-            <div className="text-gray-600">
+            <div className="text-gray-600 text-lg">
               <a
                 className="text-primary-blue"
                 target="_blank"
@@ -61,10 +66,26 @@ after:bg-black text-2xl font-bold h-8"
             </div>
           </div>
         </div>
-        <div
-          ref={embedRef}
-          className="w-1/2 h-5/6 border-gray-400 border-2"
-        ></div>
+        <div className="flex items-center w-1/2 h-full -mt-16">
+          {issue.link ===
+            "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/" && (
+            <embed
+              src={issue.link}
+              className="w-full h-5/6 border-gray-400 border-2"
+            ></embed>
+          )}
+          {issue.link !==
+            "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/" &&
+            previewImage && (
+              <div>
+                <img
+                  src={previewImage}
+                  alt={issue.title}
+                  className="w-full h-auto rounded-md"
+                />
+              </div>
+            )}
+        </div>
       </div>
     </div>
   );
