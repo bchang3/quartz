@@ -74,6 +74,7 @@ export default function Tracker() {
                   alt="Toggle"
                   width={24}
                   height={24}
+                  className="cursor-pointer"
                 />
               </motion.button>
             </div>
@@ -93,7 +94,7 @@ export default function Tracker() {
                   title={issue.title}
                   summary={issue.summary}
                   link={issue.link}
-                  route={`/issues/${issue.id}`}
+                  route={`/user/issues/${issue.id}`}
                 />
               ))}
             </motion.div>

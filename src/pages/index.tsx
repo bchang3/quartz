@@ -28,7 +28,7 @@ after:bg-black font-bold [--steps:18]"
             link="/"
           />
           <InfoBox
-            title="Guide"
+            title="Quartz Guide"
             content="How to use Quartz + all of our features."
             link="/"
           />
@@ -40,7 +40,7 @@ after:bg-black font-bold [--steps:18]"
           <InfoBox
             title="Track Your Work"
             content="See what you've been working on."
-            link="/tracker"
+            link="/user/tracker"
           />
         </div>
       </div>

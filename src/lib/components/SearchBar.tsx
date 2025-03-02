@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as emoji from "node-emoji";
 import Link from "next/link";
 import { getDateString, Issue } from "../utils/utils";
-import { Issues } from "@/pages/tracker";
+import { Issues } from "@/pages/user/tracker";
 
 interface IssueDisplay {
   issues: Issue[];
@@ -15,7 +15,7 @@ function IssueDisplay({ issues, emojis, showDate = true }: IssueDisplay) {
       {issues.map((issue, i) => {
         return (
           <Link
-            href={`/issues/${issue.id}`}
+            href={`/user/issues/${issue.id}`}
             key={i}
             className="flex flex-row justify-between py-1 hover:bg-gray-50"
           >
