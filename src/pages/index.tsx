@@ -30,7 +30,7 @@ after:bg-black font-bold [--steps:18]"
           <InfoBox
             title="Guide"
             content="How to use Quartz + all of our features."
-            link="/"
+            link="/guide"
           />
           <InfoBox
             title="Your Profile"
