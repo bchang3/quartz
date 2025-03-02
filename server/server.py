@@ -38,11 +38,14 @@ def handle_post_request():
 
     response = {}
     try:
+        print("Entering")
         email = data["email"]
         link = data["link"]
         title = data["title"]
         notes = data["notes"]
+        print("bleh")
         response = generate_summary(link)
+        print("HERE")
         db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response})
         print(response)
         return jsonify(response), 200
