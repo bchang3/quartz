@@ -75,7 +75,7 @@ function NavBar() {
       <Link className={menuLinkStyle} href={"/"}>
         Add an Issue
       </Link>
-      <Link className={menuLinkStyle} href={"/"}>
+      <Link className={menuLinkStyle} href={"/tracker"}>
         View Issues
       </Link>
       <Link className={menuLinkStyle} href={"/"}>
