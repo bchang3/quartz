@@ -6,5 +6,9 @@ export const gitLogInURL = `https://github.com/login/oauth/authorize?client_id=I
 export type Issue = issue;
 
 export const getDateString = (issue: Issue) => {
-  return `${issue.date.toLocaleString("en-US", { month: "short" })} ${issue.date.getDate()}`;
+  if (issue.date instanceof Date) {
+    return `${issue.date.toLocaleString("en-US", { month: "short" })} ${issue.date.getDate()}`;
+  }
+  return `${(new Date(issue.date)).toLocaleString("en-US", { month: "short" })} ${(new Date(issue.date)).getDate()}`;
+  
 };
