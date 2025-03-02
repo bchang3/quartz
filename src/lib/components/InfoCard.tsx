@@ -34,7 +34,7 @@ export default function InfoCard({ title, summary, link, route }: InfoCard) {
   return (
     <Link
       href={route}
-      className="flex flex-col py-6 px-4 rounded-md border-gray-200 border-[1px] gap-4 hover:bg-gray-200 justify-between"
+      className="flex flex-col py-6 px-4 rounded-md border-gray-200 border-[1px] gap-4 hover:bg-gray-200 justify-between hover:scale-103 drop-shadow-sm transition-transform duration-300"
     >
       <div className="font-semibold text-black text-xl">{title}</div>
       <div className="whitespace-nowrap text-ellipsis w-full overflow-hidden text-gray-500">
