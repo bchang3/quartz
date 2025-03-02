@@ -9,6 +9,5 @@ export const getDateString = (issue: Issue) => {
   if (issue.date instanceof Date) {
     return `${issue.date.toLocaleString("en-US", { month: "short" })} ${issue.date.getDate()}`;
   }
-  return `${(new Date(issue.date)).toLocaleString("en-US", { month: "short" })} ${(new Date(issue.date)).getDate()}`;
-  
+  return `${new Date(issue.date).toLocaleString("en-US", { month: "short" })} ${new Date(issue.date).getDate()}`;
 };

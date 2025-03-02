@@ -19,7 +19,14 @@ export default async function handler(
   const octokit = new Octokit({ auth: `${access_token}` });
   const { data } = await octokit.rest.users.listEmailsForAuthenticatedUser();
   const primaryEmail = data.find((email) => email.primary === true)?.email;
-  const issues = await db.issue.findMany({ where: { email: primaryEmail } });
+  const issues = await db.issue.findMany({
+    orderBy: [
+      {
+        date: "desc",
+      },
+    ],
+    where: { email: primaryEmail },
+  });
   const day_issues: Issue[] = [];
   const week_issues: Issue[] = [];
   const month_issues: Issue[] = [];

@@ -28,7 +28,6 @@ export default async function handler(
   //save user token
 
   if (data["access_token"]) {
-    console.log("SETTING ACCESS TOKEN", data["access_token"]);
     res.setHeader("Set-Cookie", [
       `access_token=${data["access_token"]}; HttpOnly; SameSite=Strict; Path=/; ${`Max-Age=${60 * 60 * 24 * 2}`}`,
       `logged_in=true; SameSite=Strict; Path=/; ${`Max-Age=${60 * 60 * 24 * 2}`}`,

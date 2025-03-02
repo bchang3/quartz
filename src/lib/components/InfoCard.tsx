@@ -16,7 +16,6 @@ export default function InfoCard({ title, summary, link, route }: InfoCard) {
   useEffect(() => {
     const fetchPreviewImage = async () => {
       try {
-        console.log("HERE1");
         const response = await fetch(
           `/api/getPreviewImage?url=${encodeURIComponent(link)}`,
         );
