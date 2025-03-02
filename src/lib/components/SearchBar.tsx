@@ -85,44 +85,46 @@ export default function SearchBar() {
             placeholder="Search for an issue..."
           ></input>
         </div>
-        <div className="group-focus:flex bg-white group-focus-within:flex flex-col gap-4 absolute top-0 mt-12 border-b-[1px] border-r-[1px] rounded-br-sm rounded-bl-sm border-l-[1px] border-gray-200 h-fit max-h-96 w-full p-4 hidden overflow-scroll">
-          {issues.day.length > 0 && (
-            <div className="flex flex-col gap-2">
-              <div className="text-gray-400 font-semibold">Today</div>
-              <IssueDisplay
-                issues={issues.day}
-                emojis={emojis.slice(0, issues.day.length)}
-                showDate={false}
-              ></IssueDisplay>
-            </div>
-          )}
+        {issues.day.length + issues.month.length + issues.week.length > 0 && (
+          <div className="group-focus:flex bg-white group-focus-within:flex flex-col gap-4 absolute top-0 mt-12 border-b-[1px] border-r-[1px] rounded-br-sm rounded-bl-sm border-l-[1px] border-gray-200 h-fit max-h-96 w-full p-4 hidden overflow-scroll">
+            {issues.day.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="text-gray-400 font-semibold">Today</div>
+                <IssueDisplay
+                  issues={issues.day}
+                  emojis={emojis.slice(0, issues.day.length)}
+                  showDate={false}
+                ></IssueDisplay>
+              </div>
+            )}
 
-          {issues.week.length > 0 && (
-            <div className="flex flex-col gap-2">
-              <div className="text-gray-400 font-semibold">Past Week</div>
-              <IssueDisplay
-                issues={issues.week}
-                emojis={emojis.slice(
-                  issues.day.length,
-                  issues.day.length + issues.week.length,
-                )}
-              ></IssueDisplay>
-            </div>
-          )}
+            {issues.week.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="text-gray-400 font-semibold">Past Week</div>
+                <IssueDisplay
+                  issues={issues.week}
+                  emojis={emojis.slice(
+                    issues.day.length,
+                    issues.day.length + issues.week.length,
+                  )}
+                ></IssueDisplay>
+              </div>
+            )}
 
-          {issues.month.length > 0 && (
-            <div className="flex flex-col gap-2">
-              <div className="text-gray-400 font-semibold">Past Month</div>
-              <IssueDisplay
-                issues={issues.month}
-                emojis={emojis.slice(
-                  issues.day.length + issues.week.length,
-                  emojis.length,
-                )}
-              ></IssueDisplay>
-            </div>
-          )}
-        </div>
+            {issues.month.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="text-gray-400 font-semibold">Past Month</div>
+                <IssueDisplay
+                  issues={issues.month}
+                  emojis={emojis.slice(
+                    issues.day.length + issues.week.length,
+                    emojis.length,
+                  )}
+                ></IssueDisplay>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

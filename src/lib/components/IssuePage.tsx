@@ -1,11 +1,24 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getDateString, Issue } from "../utils/utils";
 
 interface IssuePageProps {
   issue: Issue;
 }
 export default function IssuePage({ issue }: IssuePageProps) {
+  const [embedHTML, setEmbedHTML] = useState<string>();
+  const embedRef = useRef<HTMLDivElement>(null);
+  const getHTML = async () => {
+    const res = await fetch(`${issue.link}`, {
+      method: "GET",
+    });
+    const data = await res.json();
+    if (embedRef.current) embedRef.current.innerHTML = data.pageContent;
+  };
+
+  useEffect(() => {
+    getHTML();
+  }, []);
   return (
     <div className="w-5/6 h-screen">
       <div className="flex flex-row w-full h-full justify-between">
@@ -16,7 +29,7 @@ export default function IssuePage({ issue }: IssuePageProps) {
 before:absolute
 before:bg-white
 after:absolute after:inset-0 after:w-[0.125em] after:animate-blinkc
-after:bg-black text-4xl font-bold h-11"
+after:bg-black text-2xl font-bold h-8"
               style={
                 { "--steps": issue.title.length * 2 } as React.CSSProperties
               }
@@ -48,10 +61,10 @@ after:bg-black text-4xl font-bold h-11"
             </div>
           </div>
         </div>
-        <embed
-          src="https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/"
+        <div
+          ref={embedRef}
           className="w-1/2 h-5/6 border-gray-400 border-2"
-        ></embed>
+        ></div>
       </div>
     </div>
   );

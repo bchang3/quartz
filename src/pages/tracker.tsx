@@ -30,7 +30,7 @@ export default function Tracker() {
   const toggleSection = (section: keyof typeof carat) => {
     setCarat((prev) => ({ ...prev, [section]: !prev[section] }));
   };
-  
+
   const getIssues = async () => {
     const res = await fetch("/api/getissues", {
       method: "GET",
@@ -79,7 +79,7 @@ export default function Tracker() {
                 title={issue.title}
                 summary={issue.summary}
                 link={issue.link}
-                route=""
+                route={`/issues/${issue.id}`}
               />
             ))}
           </motion.div>
@@ -115,7 +115,7 @@ export default function Tracker() {
                 title={issue.title}
                 summary={issue.summary}
                 link={issue.link}
-                route=""
+                route={`/issues/${issue.id}`}
               />
             ))}
           </motion.div>
@@ -151,7 +151,7 @@ export default function Tracker() {
                 title={issue.title}
                 summary={issue.summary}
                 link={issue.link}
-                route=""
+                route={`/issues/${issue.id}`}
               />
             ))}
           </motion.div>
