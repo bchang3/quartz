@@ -49,7 +49,7 @@ export default function Tracker() {
   return (
     <section className="w-screen flex flex-col items-center">
       <div className="w-2/3 flex flex-col gap-4 mt-3">
-        {Object.entries(issues).map(([key, value]) => (
+        {["day", "week", "month"].map((key) => (
           <div key={key}>
             <div className="flex mt-4 gap-3">
               <h1 className="text-2xl font-semibold">
@@ -88,7 +88,7 @@ export default function Tracker() {
               }
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-              {value.map((issue: Issue, index: number) => (
+              {issues[key as keyof Issues].map((issue: Issue, index: number) => (
                 <InfoCard
                   key={index}
                   title={issue.title}
