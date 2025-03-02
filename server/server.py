@@ -44,7 +44,7 @@ def handle_post_request():
     notes = data["notes"]
     result = db.issue.find_one({"link": link})
     if result:
-        response = result["response"]
+        response = result["link"]
     else:
       response = generate_summary(link)
     db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response["answer"], "date": datetime.now()})
