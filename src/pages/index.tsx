@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="font-inter flex flex-col gap-8 justify-center items-center h-screen">
       <div className="flex flex-row -mt-60 gap-28">
-        <div className="flex flex-col gap-4 self-start items-center lg:items-start">
+        <div className="flex flex-col gap-4 self-start items-center lg:items-start pl-8">
           <div className="flex flex-row gap-4 text-[200px] font-bold mt-24">
             <h1
               className="relative w-fit font-inter text-3xl lg:text-7xl
@@ -21,7 +21,7 @@ after:bg-black font-bold [--steps:18]"
             <SearchBar />
           </div>
         </div>
-        <div className="lg:grid grid-cols-2 gap-6 hidden pr-12">
+        <div className="lg:grid grid-cols-2 gap-6 hidden pr-8">
           <InfoBox
             title="Add an Issue"
             content="Add references, code, and notes to your Quartz journal."
