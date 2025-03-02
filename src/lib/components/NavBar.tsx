@@ -84,7 +84,7 @@ function NavBar() {
       <Link className={menuLinkStyle} href={"/"}>
         Home
       </Link>
-      <Link className={menuLinkStyle} href={"/"}>
+      <Link className={menuLinkStyle} href={"/user/add-issue"}>
         Add an Issue
       </Link>
       <Link className={menuLinkStyle} href={"/user/tracker"}>

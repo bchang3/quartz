@@ -18,7 +18,7 @@ client = MongoClient(app.config["MONGODB_URI"])
 db = client.get_database()
 
 
-port = int(os.getenv('PORT', "7777"))
+port = int(os.getenv('PORT', "8000"))
 
 @app.route('/')
 def index():

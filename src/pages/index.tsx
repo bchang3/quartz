@@ -25,7 +25,7 @@ after:bg-black font-bold [--steps:18]"
           <InfoBox
             title="Add an Issue"
             content="Add references, code, and notes to your Quartz journal."
-            link="/"
+            link="/user/add-issue"
           />
           <InfoBox
             title="Quartz Guide"
