@@ -14,6 +14,7 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback_default_key')
 app.config["MONGODB_URI"] = os.getenv("MONGODB_URI", 'fallback_default_key')
 
 client = MongoClient(app.config["MONGODB_URI"])
+print(app.config["MONGODB_URI"])
 db = client.get_database()
 
 
