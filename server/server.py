@@ -44,10 +44,10 @@ def handle_post_request():
     notes = data["notes"]
     result = db.issue.find_one({"link": link})
     if result:
-        response = result["link"]
+        summary = result["link"]
     else:
-      response = generate_summary(link)
-    db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response["answer"], "date": datetime.now()})
+      summary = generate_summary(link)["answer"]
+    db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": summary, "date": datetime.now()})
     
     return jsonify(response), 200
     # except:
