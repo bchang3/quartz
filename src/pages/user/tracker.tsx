@@ -83,8 +83,8 @@ export default function Tracker() {
               initial={{ maxHeight: 0, opacity: 0 }}
               animate={
                 carat[key as keyof typeof carat]
-                  ? { maxHeight: 0, opacity: 0 }
-                  : { maxHeight: "1000px", opacity: 1 }
+                  ? { maxHeight: 0, opacity: 0, visibility: "hidden" }
+                  : { maxHeight: "1000px", opacity: 1, visibility: "visible" }
               }
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
