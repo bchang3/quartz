@@ -36,9 +36,12 @@ export default function IssuePage({ issue }: IssuePageProps) {
         const data = await response.json();
         if (data.previewImage) {
           setPreviewImage(data.previewImage);
+        } else {
+          setPreviewImage("/coding.png");
         }
       } catch (error) {
         console.log("Error setting preview image:", error);
+        setPreviewImage("/coding.png");
       }
     };
     fetchPreviewImage();

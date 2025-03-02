@@ -27,8 +27,8 @@ export default function InfoCard({ title, summary, link, route }: InfoCard) {
           setPreviewImage("/coding.png");
         }
       } catch (error) {
-        console.log("Error setting preview immage:", error);
-        setPreviewImage("");
+        console.log("Error setting preview image:", error);
+        setPreviewImage("/coding.png");
       }
     };
 
