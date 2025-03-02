@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+from pymongo import MongoClient
 import os
 import sys
 
@@ -10,6 +11,12 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback_default_key')
+app.config["MONGODB_URI"] = os.getenv("MONGODB_URI", 'fallback_default_key')
+
+client = MongoClient(app.config["MONGODB_URI"])
+db = client.get_database()
+
+
 port = int(os.getenv('PORT', "7777"))
 
 @app.route('/')
@@ -30,7 +37,12 @@ def handle_post_request():
 
     response = {}
     try:
-        response = generate_summary(data["link"])
+        email = data["email"]
+        link = data["link"]
+        title = data["title"]
+        notes = data["notes"]
+        response = generate_summary(link)
+        db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response})
         print(response)
         return jsonify(response), 200
     except:

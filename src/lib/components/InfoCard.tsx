@@ -1,14 +1,14 @@
-import Link from "next/link"
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 interface InfoCard {
   title: string;
   image: string;
   summary: string;
-  link: string;  
+  link: string;
 }
 
-export default function InfoCard({title, image, summary, link} : InfoCard) {
+export default function InfoCard({ title, image, summary, link }: InfoCard) {
   return (
     <Link
       href={link}
@@ -18,5 +18,5 @@ export default function InfoCard({title, image, summary, link} : InfoCard) {
       <div></div>
       <div>{summary}</div>
     </Link>
-  )
+  );
 }
