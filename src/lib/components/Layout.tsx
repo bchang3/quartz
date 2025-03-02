@@ -9,7 +9,7 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
     <>
       <div className="flex flex-col w-screen min-h-screen">
         {<NavBar />}
-        <main className={`flex flex-col mx-auto flex-1 "w-5/6 md:w-11/12"}`}>
+        <main className={`flex flex-col mx-auto flex-1 "w-5/6 lg:w-11/12"}`}>
           {children}
         </main>
         {/* {!isLoginPage && <Footer />} */}

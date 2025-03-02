@@ -11,20 +11,22 @@ interface IssueDisplay {
 }
 function IssueDisplay({ issues, emojis, showDate = true }: IssueDisplay) {
   return (
-    <div className="flex flex-col gap-1 text-base ">
+    <div className="flex flex-col gap-1 text-sm lg:text-base ">
       {issues.map((issue, i) => {
         return (
           <Link
             href={`/user/issues/${issue.id}`}
             key={i}
-            className="flex flex-row justify-between py-1 hover:bg-gray-50"
+            className="flex flex-row justify-between gap-2 py-1 hover:bg-gray-50"
           >
-            <div className="flex flex-row gap-2 font-medium">
+            <div
+              className={`flex flex-row gap-2 font-medium ${showDate ? "max-w-5/6" : "max-w-full"}`}
+            >
               <div>{emoji.find(emojis[i % emojis.length])?.emoji}</div>{" "}
               {issue.title}
             </div>
             {showDate && (
-              <div className="text-gray-400 font-normal text-sm">
+              <div className="text-gray-400 font-normal text-xs lg:text-sm">
                 {getDateString(issue)}
               </div>
             )}

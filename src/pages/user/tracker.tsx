@@ -48,7 +48,7 @@ export default function Tracker() {
 
   return (
     <section className="w-screen flex flex-col items-center">
-      <div className="w-2/3 flex flex-col gap-4 mt-3">
+      <div className="w-5/6 lg:w-2/3 flex flex-col gap-4 mt-3">
         {["day", "week", "month"].map((key) => (
           <div key={key}>
             <div className="flex mt-4 gap-3">
@@ -79,12 +79,12 @@ export default function Tracker() {
               </motion.button>
             </div>
             <motion.div
-              className="grid grid-cols-3 gap-x-5 gap-y-7 mt-4"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-x-5 gap-y-7 mt-4"
               initial={{ maxHeight: 0, opacity: 0 }}
               animate={
                 carat[key as keyof typeof carat]
                   ? { maxHeight: 0, opacity: 0, visibility: "hidden" }
-                  : { maxHeight: "1000px", opacity: 1, visibility: "visible" }
+                  : { maxHeight: "3000px", opacity: 1, visibility: "visible" }
               }
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >

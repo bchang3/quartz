@@ -44,12 +44,12 @@ export default function AddIssue() {
 
   return (
     <div className="flex flex-col items-center w-screen">
-      <div className="font-inter flex flex-col gap-8 w-5/6 mt-24">
+      <div className="font-inter flex flex-col gap-8 w-5/6 mt-12 lg:mt-24">
         <h1
           className="relative w-fit font-inter
       before:absolute
       before:bg-white
-      after:absolute after:inset-0 after:w-[0.125em] after:animate-blinkc
+      after:absolute after:inset-0 lg:after:w-[0.125em] after:w-0 after:animate-blinkc
       after:bg-black text-5xl font-bold h-12"
           style={{ "--steps": headerText.length * 2 } as React.CSSProperties}
         >
@@ -57,13 +57,13 @@ export default function AddIssue() {
         </h1>
         <div className="flex flex-row justify-between w-full">
           <form
-            className="font-inter flex flex-col gap-8 mt-16 w-1/2"
+            className="font-inter flex flex-col gap-8 mt-16 w-full lg:w-1/2"
             onSubmit={submitHandler}
           >
             <div className="flex flex-col gap-2">
               <div className="text-2xl font-bold">Title</div>
               <input
-                className="w-3/4 rounded-md border-gray-300 border-2 p-4 h-12"
+                className="w-full lg:w-3/4 rounded-md border-gray-300 border-2 p-4 h-12"
                 placeholder="Title of issue..."
                 ref={titleRef}
               ></input>
@@ -72,7 +72,7 @@ export default function AddIssue() {
               <div className="text-2xl font-bold">Reference</div>
               <input
                 type="link"
-                className="w-3/4 rounded-md border-gray-300 border-2 p-4 h-12"
+                className="w-full lg:w-3/4 rounded-md border-gray-300 border-2 p-4 h-12"
                 placeholder="Link to reference..."
                 ref={linkRef}
               ></input>
@@ -80,7 +80,7 @@ export default function AddIssue() {
             <div className="flex flex-col gap-2">
               <div className="text-2xl font-bold">Notes</div>
               <input
-                className="w-3/4 rounded-md border-gray-300 border-2 p-4 h-12"
+                className="w-full lg:w-3/4 rounded-md border-gray-300 border-2 p-4 h-12"
                 placeholder="Notes..."
                 ref={notesRef}
               ></input>
@@ -107,7 +107,7 @@ export default function AddIssue() {
               )}
             </button>
           </form>
-          <div className="w-1/4 mr-44">
+          <div className="w-1/4 mr-44 hidden lg:block">
             <img src="/quartz.png" className="w-full h-auto"></img>
           </div>
         </div>

@@ -49,14 +49,25 @@ export default function IssuePage({ issue }: IssuePageProps) {
   return (
     <div className="w-5/6 h-screen">
       <div className="flex flex-row w-full h-full justify-center">
-        <div className="flex flex-col gap-12 w-[45%]">
+        <div className="flex flex-col gap-6 lg:gap-12 w-full lg:w-[45%] mt-6 lg:mt-0">
           <div>
+            {previewImage && (
+              <div>
+                <a href={issue.link} target="_blank">
+                  <img
+                    src={previewImage}
+                    alt={issue.title}
+                    className="lg:hidden mb-6 lg:mb-0 flex w-full lg:-mt-16 cursor-pointer h-auto rounded-md hover:scale-103 shadow-md transition-transform duration-300"
+                  />
+                </a>
+              </div>
+            )}
             <h1
               className="relative w-fit font-inter
 before:absolute
 before:bg-white
-after:absolute after:inset-0 after:w-[0.125em] after:animate-blinkc
-after:bg-black text-2xl font-bold h-8"
+after:absolute after:inset-0 lg:after:w-[0.125em] after:w-0 after:animate-blinkc
+after:bg-black text-2xl font-bold lg:h-8 h-fit"
               style={
                 { "--steps": issue.title.length * 2 } as React.CSSProperties
               }
@@ -66,7 +77,7 @@ after:bg-black text-2xl font-bold h-8"
             <div className="text-xl font-light"> {getDateString(issue)}</div>
           </div>
 
-          <div className="flex flex-col gap-4 w-2/3">
+          <div className="flex flex-col gap-4 w-full lg:w-2/3">
             <div className="text-2xl font-semibold flex flex-row justify-between w-full">
               <div className="select-none">Your Notes</div>{" "}
               {!editingNotes && (
@@ -109,12 +120,14 @@ after:bg-black text-2xl font-bold h-8"
               )}
             </div>
             {!editingNotes && (
-              <div className="text-gray-600 text-lg">{issue.notes}</div>
+              <div className="text-gray-600 text-lg w-full lg:w-2/3">
+                {issue.notes}
+              </div>
             )}
             {editingNotes && (
               <textarea
                 ref={notesEditRef}
-                className="text-black text-lg h-48 bg-gray-50 p-4 rounded-md"
+                className="text-black text-lg h-48 bg-gray-50 p-4 rounded-md w-full lg:w-2/3"
                 value={notesValue}
                 autoFocus
                 onChange={() =>
@@ -124,15 +137,15 @@ after:bg-black text-2xl font-bold h-8"
             )}
           </div>
 
-          <div className="flex flex-col gap-4 w-2/3">
+          <div className="flex flex-col gap-4 w-full lg:w-2/3">
             <div className="text-2xl font-semibold">Summary</div>
             <div className="text-gray-600 text-lg">{issue.summary}</div>
           </div>
-          <div className="flex flex-col gap-4 w-2/3">
+          <div className="flex flex-col gap-4 w-full lg:w-2/3">
             <div className="text-2xl font-semibold">References</div>
             <div className="text-gray-600 text-lg">
               <a
-                className="text-primary-blue"
+                className="text-primary-blue whitespace-break-spaces text-wrap break-words"
                 target="_blank"
                 href={issue.link}
               >
@@ -141,7 +154,7 @@ after:bg-black text-2xl font-bold h-8"
             </div>
           </div>
         </div>
-        <div className="flex items-center w-[45%] h-full -mt-16">
+        <div className="lg:flex items-center w-[45%] h-full -mt-16 hidden">
           {issue.link ===
             "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/" && (
             <embed
