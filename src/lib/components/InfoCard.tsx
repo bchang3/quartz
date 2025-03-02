@@ -11,20 +11,24 @@ interface InfoCard {
 }
 
 export default function InfoCard({ title, summary, link, route }: InfoCard) {
-  const [previewImage, setPreviewImage] = useState<string>("");
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPreviewImage = async () => {
       try {
+        console.log("HERE1");
         const response = await fetch(
           `/api/getPreviewImage?url=${encodeURIComponent(link)}`,
         );
         const data = await response.json();
         if (data.previewImage) {
           setPreviewImage(data.previewImage);
+        } else {
+          setPreviewImage("/coding.png");
         }
       } catch (error) {
         console.log("Error setting preview immage:", error);
+        setPreviewImage("");
       }
     };
 
@@ -33,7 +37,7 @@ export default function InfoCard({ title, summary, link, route }: InfoCard) {
 
   return (
     <div>
-      {previewImage && (
+      {previewImage !== null && (
         <Link
           href={route}
           className="flex flex-col py-6 px-4 rounded-md border-gray-200 border-[1px] gap-4 hover:bg-gray-200 justify-between hover:scale-103 shadow-md transition-transform duration-300 h-80"

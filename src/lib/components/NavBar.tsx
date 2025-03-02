@@ -4,8 +4,10 @@ import { useState } from "react";
 import { ClickAwayListener, Drawer, Popper } from "@mui/material";
 import { gitLogInURL } from "../utils/utils";
 import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 
 function NavBar() {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [username, setUsername] = useState<string>();
   const [popperOpen, setPopperOpen] = useState<boolean>(false);
@@ -44,6 +46,16 @@ function NavBar() {
   const toggleMenu = (state: boolean) => {
     setMenuOpen(state);
   };
+  const logout = async () => {
+    const res = await fetch("/api/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setPopperOpen(false);
+    router.push("/");
+  };
 
   const menuLinkStyle =
     "text-base w-full text-left py-4 px-6 hover:bg-gray-50 hover:bg-opacity-35 font-semibold";
@@ -75,7 +87,7 @@ function NavBar() {
       <Link className={menuLinkStyle} href={"/"}>
         Add an Issue
       </Link>
-      <Link className={menuLinkStyle} href={"/tracker"}>
+      <Link className={menuLinkStyle} href={"/user/tracker"}>
         View Issues
       </Link>
       <Link className={menuLinkStyle} href={"/"}>
@@ -144,12 +156,21 @@ function NavBar() {
               >
                 Profile
               </Link>
-              <Link
-                href="/"
-                className="text-gray-200 font-light hover:font-normal hover:text-white hover:bg-gray-800 rounded-sm py-[3px] px-1"
+              <button
+                onClick={logout}
+                className="flex flex-row cursor-pointer justify-between text-gray-200 font-light hover:font-normal hover:text-white hover:bg-gray-800 rounded-sm py-[3px] px-1"
               >
                 Log Out
-              </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#e8eaed"
+                >
+                  <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+                </svg>
+              </button>
             </div>
           </div>
         </ClickAwayListener>
