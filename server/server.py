@@ -36,21 +36,21 @@ def handle_post_request():
     ########################
 
     response = {}
-    try:
-        email = data["email"]
-        link = data["link"].trim()
-        title = data["title"]
-        notes = data["notes"]
-        result = db.issue.find_one({"link": link})
-        if result:
-            response = result["response"]
-        else:
-          response = generate_summary(link)
-        db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response["answer"]})
-        
-        return jsonify(response), 200
-    except:
-        return jsonify({"error": "failed response generation"}), 400
+    # try:
+    email = data["email"]
+    link = data["link"].trim()
+    title = data["title"]
+    notes = data["notes"]
+    result = db.issue.find_one({"link": link})
+    if result:
+        response = result["response"]
+    else:
+      response = generate_summary(link)
+    db.issue.insert_one({"email": email, "link": link, "title": title, "notes": notes, "summary": response["answer"]})
+    
+    return jsonify(response), 200
+    # except:
+    #     return jsonify({"error": "failed response generation"}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=True)
