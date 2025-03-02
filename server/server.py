@@ -4,6 +4,7 @@ from pymongo import MongoClient
 import os
 import sys
 from datetime import datetime
+from flask_cors import CORS
 
 from generator import generate_summary
 
@@ -13,6 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback_default_key')
 app.config["MONGODB_URI"] = os.getenv("MONGODB_URI", 'fallback_default_key')
+CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST"]}})
 
 client = MongoClient(app.config["MONGODB_URI"])
 db = client.get_database()
