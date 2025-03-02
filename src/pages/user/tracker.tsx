@@ -88,15 +88,17 @@ export default function Tracker() {
               }
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
-              {issues[key as keyof Issues].map((issue: Issue, index: number) => (
-                <InfoCard
-                  key={index}
-                  title={issue.title}
-                  summary={issue.summary}
-                  link={issue.link}
-                  route={`/user/issues/${issue.id}`}
-                />
-              ))}
+              {issues[key as keyof Issues].map(
+                (issue: Issue, index: number) => (
+                  <InfoCard
+                    key={index}
+                    title={issue.title}
+                    summary={issue.summary}
+                    link={issue.link}
+                    route={`/user/issues/${issue.id}`}
+                  />
+                ),
+              )}
             </motion.div>
           </div>
         ))}
