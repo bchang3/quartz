@@ -17,7 +17,7 @@ after:bg-black font-bold [--steps:18]"
               Welcome to Quartz.
             </h1>{" "}
           </div>
-          <div className="w-5/6">
+          <div className="w-full md:w-5/6">
             <SearchBar />
           </div>
         </div>
