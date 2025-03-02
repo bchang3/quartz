@@ -26,6 +26,7 @@ export default function AddIssue() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        email: email,
         notes: notesRef?.current?.value,
         link: notesRef?.current?.value,
         title: notesRef?.current?.value,
