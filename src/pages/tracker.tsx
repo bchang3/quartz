@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import InfoCard from "@/lib/components/InfoCard";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Issue } from "@/lib/utils/utils";
 
-interface Issue {
-  title: string;
-  summary: string;
-  link: string;
-}
-
-interface Issues {
+export interface Issues {
   day: Issue[];
   week: Issue[];
   month: Issue[];
@@ -35,6 +30,21 @@ export default function Tracker() {
   const toggleSection = (section: keyof typeof carat) => {
     setCarat((prev) => ({ ...prev, [section]: !prev[section] }));
   };
+  
+  const getIssues = async () => {
+    const res = await fetch("/api/getissues", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    setIssues(data["issues"] as Issues);
+  };
+
+  useEffect(() => {
+    getIssues();
+  }, []);
 
   return (
     <section className="w-screen flex flex-col items-center">
