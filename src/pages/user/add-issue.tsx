@@ -20,7 +20,7 @@ export default function AddIssue() {
   };
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await fetch("https://100.27.128.63:7777/process_link", {
+    const res = await fetch("https://overunderdev.com/process_link", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
