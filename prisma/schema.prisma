@@ -15,6 +15,7 @@ datasource db {
 
 model issue {
   id                      String     @id @default(auto()) @map("_id") @db.ObjectId
+  email                   String     @unique
   title                   String
   summary                 String?
   notes                   String?
