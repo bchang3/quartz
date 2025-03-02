@@ -30,7 +30,7 @@ export default function Tracker() {
   const toggleSection = (section: keyof typeof carat) => {
     setCarat((prev) => ({ ...prev, [section]: !prev[section] }));
   };
-  
+
   const getIssues = async () => {
     const res = await fetch("/api/getissues", {
       method: "GET",
