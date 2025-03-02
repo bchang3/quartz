@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InfoCard from "@/lib/components/InfoCard";
 
-useEffect(() => {}, []);
 
 export default function Tracker() {
   return (
