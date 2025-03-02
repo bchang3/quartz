@@ -52,7 +52,7 @@ command_to_playlist = {
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback_default_key')
 socketio = SocketIO(app)
-port = int(os.getenv('PORT', "7777"))
+port = int(os.getenv('PORT', "3334"))
 
 @app.route('/')
 def index():
