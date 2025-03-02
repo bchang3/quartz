@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import { db } from "@/db";
 import { Octokit } from "octokit";
 import { Issue } from "@/lib/utils/utils";
-import { Issues } from "../tracker";
 dotenv.config();
 
 type Data = {
