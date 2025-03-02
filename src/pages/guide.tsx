@@ -4,7 +4,7 @@ export default function Guide() {
   return (
     <section className="w-screen flex flex-col items-center">
       <div className="w-2/3 flex flex-col gap-32 mt-6 mb-8">
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-row gap-12 items-center">
           <div className="w-1/3 flex flex-col">
             <h1 className="text-6xl font-semibold">Redefining Code Reuse</h1>
             <p className="text-2xl mt-3 text-gray-600">
@@ -13,17 +13,17 @@ export default function Guide() {
           </div>
           <div className="w-2/3">
             <img
-              src="/main_page.png"
+              src="/quartz_landing_search.png"
               alt="Main page illustration"
               className="border"
             />
           </div>
         </div>
 
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-row gap-12 items-center">
           <div className="w-2/3">
             <img
-              src="/main_page.png"
+              src="/quartz_vscode.png"
               alt="Main page illustration"
               className="border"
             />
@@ -38,7 +38,7 @@ export default function Guide() {
           </div>
         </div>
 
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-row gap-12 items-center">
           <div className="w-1/3 flex flex-col">
             <h1 className="text-6xl font-semibold">
               Your solutions. Your way.
@@ -49,17 +49,17 @@ export default function Guide() {
           </div>
           <div className="w-2/3">
             <img
-              src="/main_page.png"
+              src="/quartz_edit_entry.png"
               alt="Main page illustration"
               className="border"
             />
           </div>
         </div>
 
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-row gap-12 items-center">
           <div className="w-2/3">
             <img
-              src="/main_page.png"
+              src="/quartz_tracker.png"
               alt="Main page illustration"
               className="border"
             />

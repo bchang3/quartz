@@ -107,8 +107,8 @@ export default function AddIssue() {
               )}
             </button>
           </form>
-          <div className="w-1/3">
-            <img src="/coding.png" className="w-full h-auto"></img>
+          <div className="w-1/4 mr-44">
+            <img src="/quartz.png" className="w-full h-auto"></img>
           </div>
         </div>
       </div>
