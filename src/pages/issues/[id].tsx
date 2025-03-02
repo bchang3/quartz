@@ -1,8 +1,28 @@
 import InfoBox from "@/lib/components/InfoBox";
 import IssuePage from "@/lib/components/IssuePage";
 import { Issue } from "@/lib/utils/utils";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function DisplayIssue() {
+  const [issue, setIssue] = useState<Issue>();
+  const router = useRouter();
+  const { id } = router.query;
+  const getIssueById = async (id: string) => {
+    const res = await fetch(`/api/getissuebyid?id=${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    setIssue(data["issue"] as Issue);
+  };
+
+  useEffect(() => {
+    getIssueById(id as string);
+  }, []);
+
   return (
     <div className="font-inter w-screen flex justify-center">
       <IssuePage

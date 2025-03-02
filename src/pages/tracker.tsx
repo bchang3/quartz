@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InfoCard from "@/lib/components/InfoCard";
+import { Issue } from "@/lib/utils/utils";
 
-interface Issue {
-  title: string;
-  summary: string;
-  link: string;
-}
-
-interface Issues {
+export interface Issues {
   day: Issue[];
   week: Issue[];
   month: Issue[];
@@ -15,43 +10,25 @@ interface Issues {
 
 export default function Tracker() {
   const [issues, setIssues] = useState<Issues>({
-    day: [
-      {
-        title: "MongoDB Atlas Notes",
-        summary:
-          "The MongoDB Atlas Search Autocomplete Tutorial guides users on implementing autocomplete functionality using Atlas Search. ",
-        link: "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/",
-      },
-      {
-        title: "MongoDB Atlas Notes",
-        summary:
-          "The MongoDB Atlas Search Autocomplete Tutorial guides users on implementing autocomplete functionality using Atlas Search. ",
-        link: "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/",
-      },
-      {
-        title: "MongoDB Atlas Notes",
-        summary:
-          "The MongoDB Atlas Search Autocomplete Tutorial guides users on implementing autocomplete functionality using Atlas Search. ",
-        link: "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/",
-      },
-      {
-        title: "MongoDB Atlas Notes",
-        summary:
-          "The MongoDB Atlas Search Autocomplete Tutorial guides users on implementing autocomplete functionality using Atlas Search. ",
-        link: "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/",
-      },
-      {
-        title: "MongoDB Atlas Notes",
-        summary:
-          "The MongoDB Atlas Search Autocomplete Tutorial guides users on implementing autocomplete functionality using Atlas Search. ",
-        link: "https://www.mongodb.com/docs/atlas/atlas-search/tutorial/autocomplete-tutorial/",
-      },
-    ],
+    day: [],
     week: [],
     month: [],
   });
 
-  useEffect(() => {}, []);
+  const getIssues = async () => {
+    const res = await fetch("/api/getissues", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    setIssues(data["issues"] as Issues);
+  };
+
+  useEffect(() => {
+    getIssues();
+  }, []);
 
   return (
     <section className="w-screen flex flex-col items-center">

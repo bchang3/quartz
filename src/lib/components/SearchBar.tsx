@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as emoji from "node-emoji";
 import Link from "next/link";
 import { getDateString, Issue } from "../utils/utils";
+import { Issues } from "@/pages/tracker";
 
 interface IssueDisplay {
   issues: Issue[];
@@ -14,7 +15,7 @@ function IssueDisplay({ issues, emojis, showDate = true }: IssueDisplay) {
       {issues.map((issue, i) => {
         return (
           <Link
-            href="/issue"
+            href={`/issues/${issue.id}`}
             key={i}
             className="flex flex-row justify-between py-1 hover:bg-gray-50"
           >
@@ -34,6 +35,24 @@ function IssueDisplay({ issues, emojis, showDate = true }: IssueDisplay) {
   );
 }
 export default function SearchBar() {
+  const [issues, setIssues] = useState<Issues>({
+    day: [],
+    week: [],
+    month: [],
+  });
+  const getIssues = async () => {
+    const res = await fetch("/api/getissues", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    setIssues(data["issues"] as Issues);
+  };
+  useEffect(() => {
+    getIssues();
+  }, []);
   const emojis = [
     "house",
     "rocket",
@@ -47,67 +66,7 @@ export default function SearchBar() {
     "night_with_stars",
     "seedling",
   ];
-  const sampleTodayIssues: Issue[] = [
-    {
-      id: "",
-      title: "Set up AWS Lightsail server",
-      date: new Date("2025-03-01"),
-    } as Issue,
-    {
-      title: "Use a t3 stack with Next.JS",
-      summary: "",
-      date: new Date("2025-03-01"),
-    } as Issue,
-    {
-      title: "Tailwind v4",
-      summary: "",
-      date: new Date("2025-03-01"),
-    } as Issue,
-  ];
-  const sampleWeekIssues = [
-    {
-      title: "Flask for WebSockets",
-      summary: "",
-      date: new Date("2025-02-27"),
-    } as Issue,
-    {
-      title: "MongoDB Atlas Full Text Search",
-      summary: "",
-      date: new Date("2025-02-26"),
-    } as Issue,
-    {
-      title: "Excalibur Javascript Game Engine",
-      summary: "",
-      date: new Date("2025-02-06"),
-    } as Issue,
-    {
-      title: "Google Cloud Platform DB",
-      summary: "",
-      date: new Date("2025-02-24"),
-    } as Issue,
-  ];
-  const sampleMonthIssues = [
-    {
-      title: "Kubernetes and Container Management",
-      summary: "",
-      date: new Date("2025-02-18"),
-    } as Issue,
-    {
-      title: "Deploying to Vercel",
-      summary: "",
-      date: new Date("2025-02-14"),
-    } as Issue,
-    {
-      title: "Setting Up HTTPS Backend",
-      summary: "",
-      date: new Date("2025-02-11"),
-    } as Issue,
-    {
-      title: "Connect Arduino R4 to Wifi",
-      summary: "",
-      date: new Date("2025-02-07"),
-    } as Issue,
-  ];
+
   return (
     <div className="group w-full" tabIndex={0}>
       <div className="relative w-full">
@@ -126,37 +85,43 @@ export default function SearchBar() {
             placeholder="Search for an issue..."
           ></input>
         </div>
-        <div className="group-focus:flex bg-white group-focus-within:flex flex-col gap-4 absolute top-0 mt-12 border-b-[1px] border-r-[1px] rounded-br-sm rounded-bl-sm border-l-[1px] border-gray-200 h-96 w-full p-4 hidden overflow-scroll">
-          <div className="flex flex-col gap-2">
-            <div className="text-gray-400 font-semibold">Today</div>
-            <IssueDisplay
-              issues={sampleTodayIssues}
-              emojis={emojis.slice(0, sampleTodayIssues.length)}
-              showDate={false}
-            ></IssueDisplay>
-          </div>
+        <div className="group-focus:flex bg-white group-focus-within:flex flex-col gap-4 absolute top-0 mt-12 border-b-[1px] border-r-[1px] rounded-br-sm rounded-bl-sm border-l-[1px] border-gray-200 h-fit max-h-96 w-full p-4 hidden overflow-scroll">
+          {issues.day.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="text-gray-400 font-semibold">Today</div>
+              <IssueDisplay
+                issues={issues.day}
+                emojis={emojis.slice(0, issues.day.length)}
+                showDate={false}
+              ></IssueDisplay>
+            </div>
+          )}
 
-          <div className="flex flex-col gap-2">
-            <div className="text-gray-400 font-semibold">Past Week</div>
-            <IssueDisplay
-              issues={sampleWeekIssues}
-              emojis={emojis.slice(
-                sampleTodayIssues.length,
-                sampleTodayIssues.length + sampleWeekIssues.length,
-              )}
-            ></IssueDisplay>
-          </div>
+          {issues.week.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="text-gray-400 font-semibold">Past Week</div>
+              <IssueDisplay
+                issues={issues.week}
+                emojis={emojis.slice(
+                  issues.day.length,
+                  issues.day.length + issues.week.length,
+                )}
+              ></IssueDisplay>
+            </div>
+          )}
 
-          <div className="flex flex-col gap-2">
-            <div className="text-gray-400 font-semibold">Past Month</div>
-            <IssueDisplay
-              issues={sampleMonthIssues}
-              emojis={emojis.slice(
-                sampleTodayIssues.length + sampleWeekIssues.length,
-                emojis.length,
-              )}
-            ></IssueDisplay>
-          </div>
+          {issues.month.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="text-gray-400 font-semibold">Past Month</div>
+              <IssueDisplay
+                issues={issues.month}
+                emojis={emojis.slice(
+                  issues.day.length + issues.week.length,
+                  emojis.length,
+                )}
+              ></IssueDisplay>
+            </div>
+          )}
         </div>
       </div>
     </div>

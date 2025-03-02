@@ -22,7 +22,7 @@ function NavBar() {
 
   const getProfileIcon = async () => {
     const res = await fetch("/api/getprofileicon", {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
